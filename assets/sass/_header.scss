@@ -1,0 +1,610 @@
+.header--wrapper {
+  display: block;
+  min-height: 75px;
+  position: relative;
+  z-index: 99;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    min-height: 95px;
+  }
+
+  &.floating--header {
+    .header {
+      background-color: transparent;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 99;
+
+      &.header-sticky {
+        background-color: #c2a5f9;
+        left: 0;
+        position: fixed;
+        top: -100%;
+        width: 100%;
+        z-index: 9999;
+
+        &.header-show {
+          top: 0;
+          .main--menu {
+            justify-content: center;
+            flex: 1 0 80%;
+            position: relative;
+            right: 0%;
+            li {
+              display: none;
+            }
+            .logo {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .main--menu {
+      li {
+        a {
+          color: $color--white;
+
+          &::after {
+            background-color: $color--white;
+          }
+        }
+      }
+    }
+
+    .toggle-menu {
+      i {
+        background-color: $color--white;
+      }
+    }
+  }
+}
+
+.header {
+  background-color: $color--white;
+  padding: rem(25) 0;
+  position: relative;
+  transition: all 0.3s ease;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    padding: rem(33) 0;
+  }
+
+  > .holder {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &.header-sticky {
+    left: 0;
+    position: fixed;
+    top: -100%;
+    width: 100%;
+    z-index: 9999;
+
+    
+    &.header-show {
+      top: 0;
+      .toggle-menu {
+        display: block;
+      }
+      .nav-wrapper {
+        .nav-wrapper__header {
+          .main--menu {
+            right: -480px;
+          }
+        }
+      }
+    }
+  }
+
+  &.nav-open {
+    .toggle-menu {
+      i {
+        background-color: $color--white;
+        position: relative;
+
+        &:nth-child(1) {
+          top: 8px;
+          transform: rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:nth-child(3) {
+          top: -9px;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+
+    .nav-wrapper {
+      opacity: 1;
+      visibility: visible;
+      max-height: 2000vh;
+
+      @include breakpoint($breakpoint--main + 0px) {
+        max-height: 390px;
+      }
+
+      .main--nav {
+        li {
+          animation-name: fadeInn;
+          animation-duration: 0.65s;
+          animation-timing-function: ease-out;
+          animation-fill-mode: forwards;
+
+          @for $i from 1 through 15 {
+            &:nth-child(#{$i}n) {
+              animation-delay: #{$i * 0.1}s;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.toggle-menu {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  height: 35px;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  width: 32px;
+  z-index: 991;
+  transition: all 0.5s ease-in-out;
+  @include breakpoint($breakpoint--main + 0px) {
+    display: none;
+  }
+
+  i {
+    background-color: $color--white;
+    display: block;
+    height: 2px;
+    width: 100%;
+    transition: all 0.3s ease;
+
+    + i {
+      margin-top: rem(6);
+    }
+  }
+}
+
+.main--menu {
+  @extend %naked-list;
+  position: fixed;
+  right: -100%;
+  @include breakpoint(1025px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 100%;
+    position: relative;
+    right: 0%;
+  }
+
+  li {
+    position: relative;
+    text-align: center;
+
+    a {
+      color: $color--body-copy;
+      display: block;
+      font-family: $font--main;
+      font-size: rem(13);
+      font-weight: 700;
+      letter-spacing: 0.095em;
+      line-height: 160%;
+      position: relative;
+      text-decoration: none;
+      text-align: center;
+      text-transform: uppercase;
+
+      @include breakpoint(max-width 1024px) {
+        color: $color--white;
+        display: inline-block;
+      }
+
+      &::after {
+        @include animate-line;
+      }
+
+      &:hover {
+        &::after {
+          @include animate-line-hover;
+        }
+      }
+    }
+  }
+  .logo {
+    a {
+      background: url(../images/Logo.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 19px;
+      width: 128px;
+      &:hover {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.nav-wrapper {
+  background-color: #9e78e8;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  z-index: 9999;
+
+  &__header {
+    background-color: #c2a5f9;
+    padding: rem(25) 0;
+    @include breakpoint($breakpoint--main + 0px) {
+      padding: rem(33) 0;
+    }
+
+    > .holder {
+      @extend %d-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      flex: 1 0 50%;
+      text-align: center;
+      img {
+        height: 19px;
+        width: 128px;
+      }
+    }
+
+    .toggle-menu {
+      display: block;
+      i {
+        background-color: $color--white;
+      }
+    }
+  }
+}
+
+.main--nav-wrapper {
+  @extend %d-flex;
+  padding: rem(30) 0;
+  width: 100%;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    min-height: 256px;
+  }
+
+  .main--nav + .main--nav {
+    padding-left: 60px;
+  }
+}
+
+.main--nav {
+  @extend %naked-list;
+  position: relative;
+  @include flex(33.33%);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+  > li {
+    opacity: 0;
+
+    > a {
+      color: white;
+      display: block;
+      font-size: rem(13);
+      font-weight: 500;
+      letter-spacing: 0.055em;
+      line-height: rem(16);
+      padding: rem(12) 0;
+      padding-right: rem(50);
+      position: relative;
+      text-transform: capitalize;
+      text-decoration: none;
+
+      &:hover {
+        color: $color--2;
+
+        &::after {
+          left: rem(240);
+        }
+      }
+      &::after {
+        background-image: url(../images/Right-Arrow.svg);
+        @include bg-cover;
+        content: "";
+        height: 10px;
+        position: absolute;
+        right: rem(10);
+        left: 250px;
+        top: rem(15);
+        width: 14px;
+        transition: all 0.5s ease-in-out;
+      }
+    }
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.banner--wrapper {
+  @extend %bg-cover;
+  min-height: 100vh;
+  padding: rem(40) 0;
+  @extend %d-flex;
+  align-items: flex-end;
+
+  // @include breakpoint($breakpoint--main + 0px) {
+  //   // padding: rem(85) 0;
+  // }
+
+  &::before {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      linear-gradient(42.36deg, rgba(22, 30, 47, 0.5) 30.86%, rgba(22, 30, 47, 0.04) 80.06%);
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .holder {
+    z-index: 3;
+    width: 100%;
+  }
+
+  &__caption {
+    color: $color--white;
+    max-width: 520px;
+    width: 100%;
+    padding-right: 50px;
+    @include breakpoint($breakpoint--main + 0px) {
+      padding-right: 0;
+    }
+
+    &_title {
+      @extend %slide--up;
+      position: relative;
+      transition-delay: 0.8s;
+
+      h1,
+      h2 {
+        color: $color--white;
+        font-family: $font--main;
+        font-size: rem(60);
+        font-weight: 300;
+        letter-spacing: -0.035em;
+        line-height: 105%;
+        margin: 0 0 rem(30);
+        padding-bottom: rem(20);
+        position: relative;
+        transition-delay: 0.2s;
+
+        @include breakpoint($breakpoint--main + 0px) {
+          font-size: rem(83.3268);
+        }
+
+        &::after {
+          @extend %title-line;
+          transition-delay: 0.6s;
+        }
+
+        + p {
+          margin: rem(10) 0;
+        }
+      }
+
+      p {
+        transition-delay: 0.4s;
+      }
+    }
+
+    &_text {
+      margin: rem(30) 0 0;
+
+      @extend %slide--up;
+      transition-delay: 1s;
+    }
+
+    p,
+    ul,
+    ol {
+      color: $color--white;
+    }
+
+    ul,
+    ol {
+      padding-left: rem(20);
+    }
+
+    p {
+      + ul,
+      + ol {
+        margin: rem(10) 0 0;
+      }
+    }
+
+    .btn--block {
+      transition-delay: 0.6s;
+      @include d-flex;
+      align-items: center;
+      gap: 25px;
+      @include breakpoint($breakpoint--main + 0px) {
+        transition-delay: 1s;
+      }
+      .btn--img {
+        background-color: #daaa00;
+        border-radius: 25px;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+      }
+      .btn-banner {
+        text-decoration: none;
+        color: $color--white;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
+        text-align: center;
+        letter-spacing: 0.095em;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover {
+        .btn--img {
+          transform: translateX(3px);
+          transition: all 0.3s ease-in-out;
+        }
+        .btn-banner {
+          color: $color--1;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+
+    &.in-view {
+      .banner--wrapper__caption_title,
+      .banner--wrapper__caption_text {
+        @extend %slide--up-done;
+      }
+      .banner--wrapper__caption_title {
+        h1,
+        h2 {
+          &::after {
+            width: 174px;
+          }
+        }
+
+        .titleBlock {
+          h2 {
+            &::after {
+              width: 174px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .titleBlock {
+    max-width: 500px;
+    .section--title,
+    .section--subTitle {
+      color: $color--white;
+    }
+
+    .section--title {
+      font-size: rem(34);
+      line-height: 119%;
+      letter-spacing: -0.035em;
+      font-weight: 300;
+      &::after {
+        content: none;
+      }
+
+      @include breakpoint($breakpoint--main + 0px) {
+        font-size: rem(38);
+      }
+    }
+
+    p,
+    ul,
+    ol {
+      color: $color--white;
+      font-size: rem(16px);
+      letter-spacing: -0.02em;
+      line-height: 30px;
+      max-width: 626px;
+      @include breakpoint($breakpoint--main + 0px) {
+        font-size: rem(18);
+      }
+    }
+    &.titleBlock-blue {
+      .section--title,
+      .section--subTitle {
+        color: $color--1;
+      }
+
+      p,
+      ul,
+      ol {
+        color: $color--1;
+      }
+    }
+    &.titleBlock-black {
+      .section--subTitle {
+        color: $color--body-copy;
+      }
+      .section--title {
+        color: $color--1;
+      }
+
+      p,
+      ul,
+      ol {
+        color: $color--body-copy;
+      }
+    }
+    .titleBlock_text {
+      @include d-flex;
+      justify-content: space-between;
+      align-items: end;
+      padding-top: 10px;
+      .titleBlock_text__info {
+        h3 {
+          font-weight: 700;
+          font-size: 13px;
+          line-height: 26px;
+          letter-spacing: 0.045em;
+          text-transform: uppercase;
+        }
+        p {
+          font-size: 20px;
+          line-height: 25px;
+        }
+        .addressBlock {
+          margin-bottom: 30px;
+        }
+      }
+      &.contactBlock--title {
+        align-items: flex-start;
+      }
+    }
+  }
+
+  &.shortHeightBanner {
+    min-height: 416px;
+    padding-bottom: rem(20);
+  }
+}

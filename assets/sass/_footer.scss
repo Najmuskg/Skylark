@@ -1,0 +1,202 @@
+.footer {
+  .backTop {
+    @include d-flex;
+    align-items: center;
+    height: 55px;
+    font-weight: 700;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    span{
+      cursor: pointer;
+    }
+    &.backTop--gray{
+      background-color: $color--4;
+      margin-top: 40px;
+    }
+}
+    .holder {
+      max-width: 1300px;
+    }
+  
+    &__top {
+      background-color: $color--5;
+      padding: rem(30) 0;
+  
+      @include breakpoint($breakpoint--main + 0px) {
+        padding: rem(40) 0;
+      }
+    }
+  
+    &__bottom {
+      background-color: $color--7;
+      color: rgba(white, 0.6);
+      font-size: rem(10);
+      line-height: 115.2%;
+      padding: rem(20) 0;
+      text-transform: capitalize;
+  
+      p {
+        color: rgba(white, 0.6);
+        font-size: rem(10);
+        line-height: 115.2%;
+  
+        > * {
+          + * {
+            margin-left: rem(15);
+          }
+        }
+      }
+  
+      a {
+        color: rgba(white, 0.6);
+        position: relative;
+        text-decoration: none;
+  
+        &::after {
+          @include animate-line;
+          background-color: white;
+        }
+  
+        &:hover {
+          color: white;
+  
+          &::after {
+            @include animate-line-hover;
+          }
+        }
+      }
+  
+      .holder {
+        @extend %d-flex;
+      }
+  
+      &_footnote {
+        @include flex(100%);
+  
+        @include breakpoint($breakpoint--main + 0px) {
+          @include flex(60%);
+        }
+  
+        p {
+          margin-bottom: rem(20);
+  
+          @include breakpoint($breakpoint--main + 0px) {
+            margin-bottom: 0;
+          }
+          @include breakpoint(max-width $breakpoint--main + 0px) {
+            span:first-child {
+              display: block;
+              margin-bottom: rem(20);
+              text-align: center;
+            }
+          }
+        }
+      }
+  
+      &_socials {
+        @include flex(100%);
+        text-align: center;
+  
+        @include breakpoint($breakpoint--main + 0px) {
+          @include flex(40%);
+          text-align: right;
+        }
+  
+        a {
+          display: inline-flex;
+          align-items: center;
+          justify-content: flex-end;
+  
+          img {
+            opacity: 0.6;
+            margin-right: rem(10);
+          }
+  
+          &::after {
+            content: none;
+          }
+  
+          &:hover {
+            color: white;
+  
+            img {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  ul.footer-nav {
+    @extend %naked-list;
+    text-align: center;
+  
+    @include breakpoint($breakpoint--main + 0px) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    li {
+      display: none;
+      padding: 0 rem(10);
+  
+      @include breakpoint($breakpoint--main + 0px) {
+        display: block;
+      }
+  
+      a {
+        color: $color--white;
+        font-family: $font--main;
+        font-weight: 700;
+        font-size: rem(11);
+        line-height: 130%;
+        letter-spacing: 0.12em;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+  
+        &::after {
+          @include animate-line;
+          background-color: $color--2;
+        }
+  
+        &:hover {
+          color: $color--4;
+  
+          &::after {
+            @include animate-line-hover;
+          }
+        }
+      }
+  
+      &:last-child {
+        display: block;
+  
+        @include breakpoint($breakpoint--main + 0px) {
+          padding-right: 0;
+        }
+  
+        a {
+          @extend %button;
+          border-color: $color--white;
+          color: white;
+  
+          &::after {
+            content: none;
+          }
+  
+          &:hover {
+            background-color: white;
+            color: $color--4;
+          }
+        }
+      }
+    }
+  }

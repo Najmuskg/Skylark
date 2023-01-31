@@ -1,0 +1,144 @@
+.content--block {
+    @include cont-padding;
+    position: relative;
+}
+
+.section--subTitle {
+    @include section-subTitle;
+}
+
+.section--title {
+    @include section-title;
+}
+
+.title--block {
+    margin-bottom: rem(30);
+
+    @include breakpoint($breakpoint--main + 0px) {
+        @include d-flex;
+        justify-content: space-between;
+    }
+}
+
+.partners--wrap {
+    position: relative;
+    background-color: $color--6;
+    @include breakpoint($breakpoint--main + 0px) {
+        // padding:0 0 400px 0;
+    }
+    .holder {
+        min-height: 872px;
+        @include breakpoint($breakpoint--main + 0px) {
+            display: flex;
+            align-items: center;
+            min-height: 700px;
+        }
+        .partners--info {
+            @include breakpoint($breakpoint--main + 0px) {
+                max-width: 500px;
+                width: 50%;
+            }
+            .section--title {
+                color: $color--white;
+                font-family: $font--secondary;
+                font-weight: 275;
+                line-height: 120.5%;
+                letter-spacing: -0.02em;
+            }
+            .partners--info__text {
+                p {
+                    font-family: $font--secondary;
+                    font-weight: 300;
+                    font-size: 16px;
+                    line-height: 164.5%;
+                }
+            }
+        }
+    }
+    &__img {
+        @include bg-cover;
+        background-size: contain;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 22%;
+        @include breakpoint($breakpoint--main + 0px) {
+            @include bg-cover;
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            width: 50%;
+        }
+    }
+}
+
+.work--wrap {
+    
+    @include breakpoint($breakpoint--main + 0px) {
+        @include d-flex;
+    }
+
+    .work--item {
+       
+        background-color: $color--1;
+        padding: 50px 70px 25px 70px;
+        @include breakpoint($breakpoint--main + 0px) {
+            @include flex(33.33%);
+        }
+
+        &:first-child {
+            .work--item__caption {
+                .title {
+                    justify-content: flex-end;
+                }
+            }
+        }
+        &:nth-child(2) {
+            background-color: $color--2;
+        }
+        &:nth-child(3) {
+            background-color: $color--3;
+        }
+
+        &__caption {
+            .title {
+                height: 273px;
+                display: flex;
+                flex-direction: column;
+                img{
+                    max-width:100px;
+                }
+            }
+            .section--title {
+                font-weight: 500;
+                font-size: 50px;
+                line-height: 130.2%;
+                color: $color--black;
+                margin-left: 17px;
+                margin-top: 10px;
+                &::after {
+                    background-color: #000;
+                    opacity: 0.5;
+                    height: 6px;
+                }
+            }
+
+            ul {
+                @extend %naked-list;
+                list-style: square;
+                color: $color--black;
+                margin: 0 0 12px 30px;
+                height: 160px;
+                li {
+                    a {
+                        font-size: rem(25px);
+                        line-height: 158%;
+                        letter-spacing: -0.5px;
+                        color: $color--black;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
