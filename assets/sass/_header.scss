@@ -27,18 +27,6 @@
 
         &.header-show {
           top: 0;
-          .main--menu {
-            justify-content: center;
-            flex: 1 0 80%;
-            position: relative;
-            right: 0%;
-            li {
-              display: none;
-            }
-            .logo {
-              display: block;
-            }
-          }
         }
       }
     }
@@ -80,25 +68,37 @@
     justify-content: flex-end;
   }
 
+  .logo-topShow{
+    display: block;
+    width: 54%;
+    @include breakpoint($breakpoint--main + 0px) {
+      display: none;
+    }
+  }
+
   &.header-sticky {
     left: 0;
     position: fixed;
     top: -100%;
     width: 100%;
     z-index: 9999;
-
+    .main--menu{
+      display: none;
+    }
     
     &.header-show {
       top: 0;
-      .toggle-menu {
-        display: block;
+      .main--menu{
+        display: none;
       }
-      .nav-wrapper {
-        .nav-wrapper__header {
-          .main--menu {
-            right: -480px;
-          }
-        }
+      
+      .logo-topShow{
+        display: block;
+        width: 54%;
+      }
+
+      .toggle-menu{
+        display: block;
       }
     }
   }
@@ -181,16 +181,12 @@
 
 .main--menu {
   @extend %naked-list;
-  position: fixed;
-  right: -100%;
+  width: 100%;
+  display: none;
   @include breakpoint(1025px) {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    flex: 0 0 100%;
-    position: relative;
-    right: 0%;
   }
 
   li {
@@ -266,16 +262,12 @@
     > .holder {
       @extend %d-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
     }
 
-    .logo {
-      flex: 1 0 50%;
-      text-align: center;
-      img {
-        height: 19px;
-        width: 128px;
-      }
+    .logo-topShow{
+      display: block;
+      width: 54%;
     }
 
     .toggle-menu {
@@ -297,15 +289,20 @@
   }
 
   .main--nav + .main--nav {
-    padding-left: 60px;
+    @include breakpoint($breakpoint--main + 0px) {
+      padding-left: 60px;
+    }
   }
 }
 
 .main--nav {
   @extend %naked-list;
   position: relative;
-  @include flex(33.33%);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  @include breakpoint($breakpoint--main + 0px) {
+    @include flex(33.33%);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
 
   > li {
     opacity: 0;
@@ -385,10 +382,6 @@
     color: $color--white;
     max-width: 520px;
     width: 100%;
-    padding-right: 50px;
-    @include breakpoint($breakpoint--main + 0px) {
-      padding-right: 0;
-    }
 
     &_title {
       @extend %slide--up;
@@ -525,7 +518,7 @@
     }
 
     .section--title {
-      font-size: rem(34);
+      font-size: rem(30);
       line-height: 119%;
       letter-spacing: -0.035em;
       font-weight: 300;

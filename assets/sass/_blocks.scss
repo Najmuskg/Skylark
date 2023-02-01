@@ -73,17 +73,16 @@
 }
 
 .work--wrap {
-    
     @include breakpoint($breakpoint--main + 0px) {
         @include d-flex;
     }
 
     .work--item {
-       
         background-color: $color--1;
-        padding: 50px 70px 25px 70px;
+        padding:25px;
         @include breakpoint($breakpoint--main + 0px) {
             @include flex(33.33%);
+            padding: 50px 70px 25px 70px;
         }
 
         &:first-child {
