@@ -108,18 +108,18 @@ $(function () {
       },
     },
   });
-  new Swiper(".bannerSlider", {
-    speed:500,
-    slidesPerView:"auto",
-    freeMode: true,
-    spaceBetween: 10,
+  // new Swiper(".bannerSlider", {
+  //   speed:500,
+  //   slidesPerView:"auto",
+  //   freeMode: true,
+  //   spaceBetween: 10,
 
-    navigation: {
-      nextEl: ".banner-next",
-      prevEl: ".banner-prev",
+  //   navigation: {
+  //     nextEl: ".banner-next",
+  //     prevEl: ".banner-prev",
       
-    },
-  });
+  //   },
+  // });
 
   // End of Sliders
 
@@ -263,3 +263,28 @@ const observer = new IntersectionObserver(check);
 scrollers.forEach((scroller) => observer.observe(scroller));
 
 
+
+$(document).ready(function () {
+	var keys = ['About Us', 'Our Team', 'What We Are', 'Contact Us'];
+
+	var mySwiper = new Swiper('.bannerSlider', {
+		speed: 500,
+    slidesPerView:"auto",
+    freeMode: true,
+    spaceBetween: 10,
+		
+		pagination: {
+			el: '.pagination',
+			clickable: true,
+			renderBullet: function (index, className) {
+				return '<div class="' + className + '">' + (keys[index]) + 
+				'</div>';
+			},
+		},
+    navigation: {
+      nextEl: ".banner-next",
+      prevEl: ".banner-prev",
+      
+    },
+	});
+});

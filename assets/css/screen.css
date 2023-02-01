@@ -127,7 +127,7 @@ p {
   }
 }
 
-.main--menu, .main--nav, ul.footer-nav, .work--wrap .work--item__caption ul, .bannerSlider .short-nav ul {
+.main--menu, .main--nav, ul.footer-nav, .work--wrap .work--item__caption ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -3513,58 +3513,42 @@ ul.footer-nav li:last-child a:hover {
   height: 550px;
 }
 
-.bannerSlider .short-nav ul {
+.pagination {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  height: 10vh;
+  z-index: 100;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.bannerSlider .short-nav ul li {
+.pagination .swiper-pagination-bullet {
   width: 100%;
+  height: 100%;
+  border-radius: 0;
+  line-height: 10vh;
+  vertical-align: middle;
+  opacity: 1;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-  padding-bottom: 10px;
-}
-
-@media (min-width: 768px) {
-  .bannerSlider .short-nav ul li {
-    width: 23%;
-  }
-}
-
-.bannerSlider .short-nav ul li.active {
-  border-bottom: 1px solid #ffffff;
+  font-size: 18px;
+  text-align: left;
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
-.bannerSlider .short-nav ul li.active a {
+.pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: transparent;
   color: #ffffff;
-}
-
-.bannerSlider .short-nav ul li a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 500;
-  font-size: 15px;
-}
-
-.bannerSlider .short-nav ul li + li {
-  margin-top: 20px;
-}
-
-@media (min-width: 768px) {
-  .bannerSlider .short-nav ul li + li {
-    margin-left: 20px;
-    margin-top: 0;
-  }
+  border-bottom: 1px solid #ffffff;
+  padding-top: 10px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 /*# sourceMappingURL=screen.css.map */
