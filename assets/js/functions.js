@@ -272,7 +272,10 @@ $(document).ready(function () {
     slidesPerView:"auto",
     freeMode: true,
     spaceBetween: 10,
-		
+		loop: true,
+    autoplay: {
+      delay: 4000,
+    },
 		pagination: {
 			el: '.pagination',
 			clickable: true,
