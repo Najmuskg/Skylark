@@ -3052,6 +3052,12 @@ ul.footer-nav li:last-child a:hover {
   margin-top: 10px;
 }
 
+@media (min-width: 1100px) {
+  .work--wrap .work--item__caption .section--title {
+    font-size: 40px;
+  }
+}
+
 .work--wrap .work--item__caption .section--title::after {
   background-color: #000;
   opacity: 0.5;
