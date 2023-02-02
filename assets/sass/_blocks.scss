@@ -116,8 +116,12 @@
                 margin-left: 17px;
                 margin-top: 10px;
                
-                @include breakpoint($breakpoint--main + 332px) {
+                
+                @include  breakpoint(max-width $breakpoint--main + 382px) {
                     font-size: 40px;
+                }
+                @include  breakpoint(max-width $breakpoint--main + 0px) {
+                    font-size: 50px;
                 }
                 
                 &::after {
